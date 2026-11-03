@@ -60,8 +60,8 @@
   };
   // ============================================================
 
-  const SUPABASE_URL = 'https://onvkeytrxjqrudtthkz.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9udmtleXRyeGpxcnZ1ZHR0aGt6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NTUyOTUsImV4cCI6MjEwOTIzMTI5NX0.HLNaFtI518JdZTk5RZCBoo6bUdPzIPjTVN7Ue0R2MUI';
+  const SUPABASE_URL = 'https://etjoiyrouejoddcjvhke.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0am9peXJvdWVqb2RkY2p2aGtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NzA0MDIsImV4cCI6MjEwOTI0NjQwMn0.4HtoeyTYpy24mdsJkuzbvsroX8qGovNGcKTMltfhdUw';
 
   let supabaseClient = null;
 
@@ -302,8 +302,18 @@
         fillAmountOptions();
         updateWaitInfo();
       } catch (err) {
-        console.error(err);
-        showMessage(formMessage, t('form.error'), 'error');
+        console.error('Error solicitud:', err);
+        var detail = (err && (err.message || err.error_description || err.details || err.hint)) || '';
+        if (detail) console.error('Detalle:', detail);
+        var msg = t('form.error');
+        if (detail && /relation|does not exist|schema cache/i.test(String(detail))) {
+          msg = 'Faltan las tablas en Supabase. Ejecuta el SQL del README en SQL Editor.';
+        } else if (detail && /row-level security|RLS|policy/i.test(String(detail))) {
+          msg = 'Error de permisos (RLS). Ejecuta las políticas SQL del README.';
+        } else if (detail && /JWT|Invalid API key|apikey/i.test(String(detail))) {
+          msg = 'Clave de Supabase incorrecta. Revisa URL y anon key en js/app.js.';
+        }
+        showMessage(formMessage, msg, 'error');
       } finally {
         if (submitBtn) submitBtn.disabled = false;
         if (spinner) spinner.style.display = 'none';

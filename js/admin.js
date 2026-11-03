@@ -5,8 +5,8 @@
   'use strict';
 
   var ADMIN_PASSWORD = 'stallone2026';
-  var SUPABASE_URL = 'https://onvkeytrxjqrudtthkz.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9udmtleXRyeGpxcnZ1ZHR0aGt6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NTUyOTUsImV4cCI6MjEwOTIzMTI5NX0.HLNaFtI518JdZTk5RZCBoo6bUdPzIPjTVN7Ue0R2MUI';
+  var SUPABASE_URL = 'https://etjoiyrouejoddcjvhke.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0am9peXJvdWVqb2RkY2p2aGtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM2NzA0MDIsImV4cCI6MjEwOTI0NjQwMn0.4HtoeyTYpy24mdsJkuzbvsroX8qGovNGcKTMltfhdUw';
 
   var supabaseClient = null;
   var allSolicitudes = [];
