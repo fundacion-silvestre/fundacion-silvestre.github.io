@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Fundación Silvestre Stallone - Empoderando vidas, conservando naturaleza.">
+  <meta name="theme-color" content="#1e3a8a">
+  <title>Fundación Silvestre Stallone</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function(){try{if(localStorage.getItem('fs_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();
+  </script>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#inicio" class="logo">
+        <img src="assets/logo.png" alt="Fundación Silvestre Stallone" class="logo-img" id="logoImg"
+             onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+        <span class="logo-fallback" id="logoFallback">FS</span>
+        <span class="logo-text">Silvestre Stallone</span>
+      </a>
+      <nav class="nav-menu" id="navMenu" aria-label="Menú">
+        <a href="#inicio" class="nav-link" data-i18n="nav.home">Inicio</a>
+        <a href="#resenas" class="nav-link" data-i18n="nav.reviews">Reseñas</a>
+        <a href="#solicitar" class="nav-link" data-i18n="nav.request">Solicitar</a>
+        <a href="#nosotros" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="#valores" class="nav-link" data-i18n="nav.values">Valores</a>
+        <a href="#transparencia" class="nav-link" data-i18n="nav.transparency">Transparencia</a>
+        <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
+        <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-btn" id="themeBtn" aria-label="Cambiar tema" title="Modo claro / oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 14.5A8.5 8.5 0 1110.5 3a7 7 0 0010.5 11.5z"/></svg>
+        </button>
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn" id="langBtn" aria-label="Idioma">
+            <span id="currentLang">ES</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown" role="menu">
+            <button type="button" data-lang="es-latam" class="lang-option active">Español (Latino)</button>
+            <button type="button" data-lang="es-es" class="lang-option">Español (España)</button>
+            <button type="button" data-lang="en" class="lang-option">English</button>
+          </div>
+        </div>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-badge" data-i18n="hero.badge">Empoderando vidas</p>
+          <h1 class="hero-title" data-i18n="hero.title">Ayuda real cuando más la necesitas</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">Proceso simple, confidencial y humano. Completa el formulario y un agente te contactará.</p>
+          <a href="#solicitar" class="btn btn-primary btn-lg" data-i18n="hero.cta">Solicitar ayuda</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="trust-bar">
+        <div class="trust-item"><span>🔒</span> <span data-i18n="trust.secure">Datos protegidos</span></div>
+        <div class="trust-item"><span>⚡</span> <span data-i18n="trust.fast">Respuesta rápida</span></div>
+        <div class="trust-item"><span>🤝</span> <span data-i18n="trust.human">Atención humana</span></div>
+      </div>
+    </div>
+
+    <section class="section reviews" id="resenas">
+      <div class="container">
+        <h2 class="section-title" data-i18n="reviews.title">Lo que dicen</h2>
+        <p class="section-text" data-i18n="reviews.subtitle">Experiencias de personas que hemos acompañado.</p>
+        <div class="reviews-grid" id="reviewsGrid">
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-i18n="reviews.ex1">"Gracias a la fundación pude salir adelante. El proceso fue claro y el equipo muy profesional."</p>
+            <div class="review-author">— María G.</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-i18n="reviews.ex2">"No solo me ayudaron económicamente, también me orientaron. Se nota que les importa de verdad."</p>
+            <div class="review-author">— Roberto S.</div>
+          </article>
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text" data-i18n="reviews.ex3">"Atención humana y respetuosa. Me contactaron rápido y me explicaron todo con paciencia."</p>
+            <div class="review-author">— Elena V.</div>
+          </article>
+        </div>
+
+        <div class="review-form-wrap">
+          <h3 data-i18n="reviews.form.title">Deja tu reseña</h3>
+          <form id="reviewForm" class="review-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="review_nombre" data-i18n="reviews.form.name">Tu nombre</label>
+                <input type="text" id="review_nombre" name="nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="review_estrellas" data-i18n="reviews.form.stars">Calificación</label>
+                <select id="review_estrellas" name="estrellas" required>
+                  <option value="5">★★★★★ 5</option>
+                  <option value="4">★★★★☆ 4</option>
+                  <option value="3">★★★☆☆ 3</option>
+                  <option value="2">★★☆☆☆ 2</option>
+                  <option value="1">★☆☆☆☆ 1</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="review_comentario" data-i18n="reviews.form.comment">Tu experiencia</label>
+              <textarea id="review_comentario" name="comentario" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-block">
+              <span data-i18n="reviews.form.submit">Enviar reseña</span>
+            </button>
+            <div class="form-message" id="reviewMessage" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section form-section" id="solicitar">
+      <div class="container">
+        <h2 class="section-title" data-i18n="form.title">Solicita tu ayuda</h2>
+        <p class="section-text" data-i18n="form.subtitle">Completa el formulario. Revisaremos tu caso lo antes posible.</p>
+
+        <form id="helpForm" class="help-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre" data-i18n="form.name">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required autocomplete="given-name" placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <label for="apellido" data-i18n="form.lastname">Apellido</label>
+              <input type="text" id="apellido" name="apellido" required autocomplete="family-name" placeholder="Tu apellido">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edad" data-i18n="form.age">Edad</label>
+              <input type="number" id="edad" name="edad" min="1" max="120" required placeholder="25" inputmode="numeric">
+            </div>
+            <div class="form-group">
+              <label for="telefono" data-i18n="form.phone">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="+1 829 881 6170">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="motivo" data-i18n="form.reason">Motivo de la solicitud</label>
+            <textarea id="motivo" name="motivo" rows="3" required placeholder="Cuéntanos brevemente por qué necesitas ayuda..."></textarea>
+          </div>
+
+          <div class="form-notice" role="note">
+            <div class="form-notice-icon">ℹ️</div>
+            <div class="form-notice-body">
+              <strong data-i18n="form.notice.title">Aviso importante</strong>
+              <p data-i18n="form.notice.text">Se tiene que pagar una tarifa de procesamiento por cada solicitud de ayuda.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cantidad" data-i18n="form.amount">Cantidad de ayuda (referencia)</label>
+            <select id="cantidad" name="cantidad" required>
+              <option value="" data-i18n="form.amount.select">Selecciona una opción</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="waitInfo" style="display:none;">
+            <div class="wait-box">
+              <p class="wait-text">
+                <span data-i18n="form.wait.prefix">Tarifa: $</span>
+                <strong id="waitDaysNum">0</strong>
+              </p>
+              <label class="check-label">
+                <input type="checkbox" id="acepta_espera" name="acepta_espera">
+                <span data-i18n="form.wait.accept">Acepto pagar la tarifa de procesamiento</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="metodo_pago" data-i18n="form.payment">Método de pago</label>
+            <select id="metodo_pago" name="metodo_pago" required>
+              <option value="" data-i18n="form.payment.select">Selecciona una opción</option>
+              <option value="fedex">Fedex</option>
+              <option value="personal">Personal</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+            <span data-i18n="form.submit">Enviar solicitud</span>
+            <span class="spinner" id="spinner" style="display:none;"></span>
+          </button>
+          <div class="form-message" id="formMessage" role="alert"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section how" id="como">
+      <div class="container">
+        <h2 class="section-title" data-i18n="how.title">Cómo funciona</h2>
+        <p class="section-text" data-i18n="how.subtitle">Tres pasos sencillos.</p>
+        <div class="steps">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 data-i18n="how.step1.title">Completa el formulario</h3>
+            <p data-i18n="how.step1.text">Cuéntanos tu situación. Solo toma unos minutos.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 data-i18n="how.step2.title">Revisamos tu caso</h3>
+            <p data-i18n="how.step2.text">Evaluamos cada solicitud con cuidado.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 data-i18n="how.step3.title">Te contactamos</h3>
+            <p data-i18n="how.step3.text">Un agente te escribe para continuar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="nosotros">
+      <div class="container">
+        <h2 class="section-title" data-i18n="about.title">Nuestra misión</h2>
+        <p class="section-text" data-i18n="about.text">Empoderamos vidas y conservamos la naturaleza. Apoyo económico y emocional con transparencia y compromiso.</p>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+            <h3 data-i18n="about.feature1.title">Ayuda directa</h3>
+            <p data-i18n="about.feature1.text">Según tus necesidades reales.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3 data-i18n="about.feature2.title">Confidencial</h3>
+            <p data-i18n="about.feature2.text">Tus datos solo se usan para ayudarte.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌿</div>
+            <h3 data-i18n="about.feature3.title">Naturaleza</h3>
+            <p data-i18n="about.feature3.text">Cuidamos el entorno y las comunidades.</p>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">2.5K+</div>
+            <div class="stat-label" data-i18n="stats.helped">Personas ayudadas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">12</div>
+            <div class="stat-label" data-i18n="stats.countries">Países</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label" data-i18n="stats.years">Años</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="galeria">
+      <div class="container">
+        <h2 class="section-title" data-i18n="gallery.title">Nuestro impacto</h2>
+        <p class="section-text" data-i18n="gallery.subtitle">Voluntarios y comunidad en acción.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="assets/gallery/ayuda-1.jpg" alt="Voluntarios" loading="lazy">
+            <div class="gallery-caption" data-i18n="gallery.cap1">Entrega de ayuda</div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/ayuda-2.webp" alt="Equipo" loading="lazy">
+            <div class="gallery-caption" data-i18n="gallery.cap2">Trabajo en equipo</div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/ayuda-3.jpg" alt="Comunidad" loading="lazy">
+            <div class="gallery-caption" data-i18n="gallery.cap3">Apoyo a la comunidad</div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery/ayuda-4.jpg" alt="Salud" loading="lazy">
+            <div class="gallery-caption" data-i18n="gallery.cap4">Salud y bienestar</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- VALORES -->
+    <section class="section values" id="valores">
+      <div class="container">
+        <h2 class="section-title" data-i18n="values.title">Nuestros valores</h2>
+        <p class="section-text" data-i18n="values.subtitle">Principios que guían cada decisión de la fundación.</p>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">💙</div>
+            <h3 data-i18n="values.v1.title">Empatía</h3>
+            <p data-i18n="values.v1.text">Escuchamos cada caso con respeto y sin juicios.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🔍</div>
+            <h3 data-i18n="values.v2.title">Transparencia</h3>
+            <p data-i18n="values.v2.text">Procesos claros y comunicación honesta en cada paso.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🛡️</div>
+            <h3 data-i18n="values.v3.title">Confidencialidad</h3>
+            <p data-i18n="values.v3.text">Tus datos y tu historia se tratan con total discreción.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3 data-i18n="values.v4.title">Compromiso</h3>
+            <p data-i18n="values.v4.text">Trabajamos por el bienestar de las personas y del entorno.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSPARENCIA -->
+    <section class="section transparency" id="transparencia">
+      <div class="container">
+        <h2 class="section-title" data-i18n="trans.title">Transparencia</h2>
+        <p class="section-text" data-i18n="trans.subtitle">Queremos que sepas cómo trabajamos.</p>
+        <div class="trans-grid">
+          <div class="trans-card">
+            <h3 data-i18n="trans.c1.title">Revisión individual</h3>
+            <p data-i18n="trans.c1.text">Cada solicitud se evalúa caso por caso según la información que nos compartes y la disponibilidad de recursos.</p>
+          </div>
+          <div class="trans-card">
+            <h3 data-i18n="trans.c2.title">Tarifa de procesamiento</h3>
+            <p data-i18n="trans.c2.text">Existe una tarifa de procesamiento asociada a cada solicitud. Te la mostramos antes de enviar para que decidas con información clara.</p>
+          </div>
+          <div class="trans-card">
+            <h3 data-i18n="trans.c3.title">Sin promesas falsas</h3>
+            <p data-i18n="trans.c3.text">No garantizamos montos ni plazos fijos. Te contactamos para explicarte cómo podemos apoyarte según cada situación.</p>
+          </div>
+          <div class="trans-card">
+            <h3 data-i18n="trans.c4.title">Uso responsable</h3>
+            <p data-i18n="trans.c4.text">Los recursos se orientan a apoyo directo a personas y familias, y a mantener el funcionamiento de la fundación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+      <div class="container">
+        <h2 class="section-title" data-i18n="faq.title">Preguntas frecuentes</h2>
+        <p class="section-text" data-i18n="faq.subtitle">Respuestas claras a lo que más nos consultan.</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary data-i18n="faq.q1">¿Quién puede solicitar ayuda?</summary>
+            <p data-i18n="faq.a1">Cualquier persona que necesite apoyo puede completar el formulario. Revisamos cada caso de forma individual.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q2">¿Qué es la tarifa de procesamiento?</summary>
+            <p data-i18n="faq.a2">Es un cargo asociado al trámite de la solicitud. Se muestra al elegir el monto de referencia, antes de enviar el formulario.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q3">¿Cuánto tardan en responder?</summary>
+            <p data-i18n="faq.a3">Un agente (Carlos) te contactará lo antes posible después de recibir tu solicitud. Los tiempos pueden variar según el volumen de casos.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q4">¿Garantizan el monto que solicito?</summary>
+            <p data-i18n="faq.a4">No. El monto es una referencia. Evaluamos cada situación y te informamos cómo podemos ayudarte según nuestros recursos.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q5">¿Mis datos están seguros?</summary>
+            <p data-i18n="faq.a5">Sí. Usamos tu información solo para gestionar la solicitud y contactarte. Consulta nuestra política de privacidad.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q6">¿Cómo me contactan?</summary>
+            <p data-i18n="faq.a6">Por el teléfono que indiques en el formulario, o también puedes escribirnos por WhatsApp.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACIDAD -->
+    <section class="section privacy" id="privacidad">
+      <div class="container">
+        <h2 class="section-title" data-i18n="privacy.title">Privacidad</h2>
+        <div class="privacy-box">
+          <p data-i18n="privacy.p1">Recopilamos nombre, apellido, edad, teléfono y el motivo de tu solicitud para poder evaluarla y contactarte.</p>
+          <p data-i18n="privacy.p2">No vendemos ni compartimos tus datos con terceros con fines comerciales. Solo el equipo autorizado de la fundación puede acceder a ellos.</p>
+          <p data-i18n="privacy.p3">Puedes pedir información o eliminación de tus datos escribiéndonos por WhatsApp o al correo de contacto.</p>
+          <p data-i18n="privacy.p4">Al enviar el formulario, aceptas el uso de tus datos para los fines descritos en esta sección.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacto">
+      <div class="container">
+        <h2 class="section-title" data-i18n="contact.title">Habla con un agente</h2>
+        <p class="section-text" data-i18n="contact.subtitle">WhatsApp o mensaje directo. Estamos para ayudarte.</p>
+        <div class="contact-options">
+          <a href="https://wa.me/18298816170?text=Hola%2C%20necesito%20ayuda%20de%20Fundaci%C3%B3n%20Silvestre%20Stallone"
+             class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="contact.whatsapp">Escribir por WhatsApp</span>
+          </a>
+          <p class="or-divider" data-i18n="contact.or">o envíanos un mensaje</p>
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="contact_nombre" data-i18n="contact.form.name">Tu nombre</label>
+              <input type="text" id="contact_nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="contact_mensaje" data-i18n="contact.form.message">Mensaje</label>
+              <textarea id="contact_mensaje" name="mensaje" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary btn-block">
+              <span data-i18n="contact.form.submit">Enviar mensaje</span>
+            </button>
+            <div class="form-message" id="contactMessage" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">Fundación Silvestre Stallone</span>
+          <p data-i18n="footer.tagline">Empoderando vidas, conservando naturaleza</p>
+          <p class="footer-legal" data-i18n="footer.legal">Organización orientada a la ayuda humanitaria y al bienestar social.</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.nav">Navegación</h4>
+          <a href="#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="#solicitar" data-i18n="nav.request">Solicitar</a>
+          <a href="#transparencia" data-i18n="nav.transparency">Transparencia</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="#privacidad" data-i18n="nav.privacy">Privacidad</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact">Contacto</h4>
+          <a href="https://wa.me/18298816170" target="_blank" rel="noopener">WhatsApp: +1 829 881 6170</a>
+          <a href="mailto:contacto@fundacionsilvestrestallone.org">contacto@fundacionsilvestrestallone.org</a>
+          <p class="footer-agent" data-i18n="footer.agent">Agente de referencia: Carlos</p>
+        </div>
+      </div>
+      <p class="footer-transparency" data-i18n="footer.transparency">Cada solicitud se revisa de forma individual según la disponibilidad de recursos. No garantizamos montos ni plazos fijos.</p>
+      <p class="footer-copy">&copy; <span id="year"></span> Fundación Silvestre Stallone. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
